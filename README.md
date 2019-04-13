@@ -13,6 +13,7 @@ Download the latest [release](https://github.com/lukethompsxn/graphfx/releases) 
 - `GFXStateManager`: This is the interface which your algorithm state manager class must implemented. It has two methods, `getCurrentNodes()` and `getOptimalNodes()` which are used to update the graph. 
 
 **Using GraphFX**
+
 To create a graph, simply create a new `GFXManager`, passing in your `GFXGraph` data, `GFXStateManager` concrete class and the path to the stylesheet. Then call `createGraph()` which will return the panel you need to include in your project. Thats all you need to do, GraphFX will handle the rest from there! 
 
 ```
