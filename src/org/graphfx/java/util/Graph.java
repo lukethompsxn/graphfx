@@ -48,6 +48,4 @@ public interface Graph {
      * @return a list of exit nodes out of the graph
      */
     List<Node> getExitNodes();
-
-;
 }

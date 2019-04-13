@@ -23,43 +23,45 @@ public class GraphWindow {
     private Set<String> previousEdges;
     private Set<String> currentNodes = new HashSet<>();
     private Set<String> currentEdges = new HashSet<>();
-    private String stylePath;
+
+    private static final String UI_LABEL = "ui.label";
+    private static final String UI_CLASS = "ui.class";
+    private static final String MARKED = "marked";
+    private static final String SEEN = "seen";
+    private static final String COORDINATE_SYSTEM = "xyz";
+    private static final String SEPARATOR = "-";
 
     public GraphWindow(util.Graph graphData, String stylePath) {
         this.graphData = graphData;
         nodeLevels = new HashMap<>();
         levels = new HashMap<>();
-        this.stylePath = stylePath;
 
         System.setProperty("org.graphstream.ui.renderer", "org.graphstream.ui.j2dviewer.J2DGraphRenderer");
-
-        drawTree();
+        visualisedGraph = new MultiGraph("Graph");
+        visualisedGraph.setAttribute("ui.stylesheet", "url('" + stylePath + "')");
     }
 
     /**
      * This method is used to draw the initial tree of nodes and edges which
      * make up the graph.
      */
-    private void drawTree() {
+    void drawTree() {
         int z = 0;
-
-        visualisedGraph = new MultiGraph("Graph");
-        visualisedGraph.setAttribute("ui.stylesheet", "url('" + stylePath + "')");
 
         determineLevels();
 
         for (Node node : graphData.getAllNodes()) {
             if (visualisedGraph.getNode(node.getLabel()) == null) {
-                visualisedGraph.addNode(node.getLabel()).setAttribute("ui.label", node.getLabel());
-                visualisedGraph.getNode(node.getLabel()).setAttribute("xyz", getXCoordinate(node), nodeLevels.get(node), z);
+                visualisedGraph.addNode(node.getLabel()).setAttribute(UI_LABEL, node.getLabel());
+                visualisedGraph.getNode(node.getLabel()).setAttribute(COORDINATE_SYSTEM, getXCoordinate(node), nodeLevels.get(node), z);
             }
 
             for (Edge edge : graphData.getEdges(node)) {
                 if (visualisedGraph.getNode(edge.getChild().getLabel()) == null) {
-                    visualisedGraph.addNode(edge.getChild().getLabel()).setAttribute("ui.label", edge.getChild().getLabel());
-                    visualisedGraph.getNode(edge.getChild().getLabel()).setAttribute("xyz", getXCoordinate(edge.getChild()), nodeLevels.get(edge.getChild()), z);
+                    visualisedGraph.addNode(edge.getChild().getLabel()).setAttribute(UI_LABEL, edge.getChild().getLabel());
+                    visualisedGraph.getNode(edge.getChild().getLabel()).setAttribute(COORDINATE_SYSTEM, getXCoordinate(edge.getChild()), nodeLevels.get(edge.getChild()), z);
                 }
-                String id = edge.getParent().getLabel() + "-" + edge.getChild().getLabel();
+                String id = edge.getParent().getLabel() + SEPARATOR + edge.getChild().getLabel();
                 if (visualisedGraph.getEdge(id) == null) {
                     visualisedGraph.addEdge(id, edge.getParent().getLabel(), edge.getChild().getLabel(), true);
                 }
@@ -78,12 +80,12 @@ public class GraphWindow {
         currentEdges = new HashSet<>();
 
         for (Node parent : scheduledNodes) {
-            visualisedGraph.getNode(parent.getLabel()).setAttribute("ui.class", "marked");
+            visualisedGraph.getNode(parent.getLabel()).setAttribute(UI_CLASS, MARKED);
             currentNodes.add(parent.getLabel());
             for (Edge e : graphData.getEdges(parent)) {
                 if (scheduledNodes.contains(e.getChild())) {
-                    String label = parent.getLabel() + "-" + e.getChild().getLabel();
-                    visualisedGraph.getEdge(label).setAttribute("ui.class", "marked");
+                    String label = parent.getLabel() + SEPARATOR + e.getChild().getLabel();
+                    visualisedGraph.getEdge(label).setAttribute(UI_CLASS, MARKED);
                     currentEdges.add(label);
                 }
             }
@@ -91,13 +93,13 @@ public class GraphWindow {
 
         for (String s : previousNodes) {
             if (!currentNodes.contains(s)) {
-                visualisedGraph.getNode(s).setAttribute("ui.class", "seen");
+                visualisedGraph.getNode(s).setAttribute(UI_CLASS, SEEN);
             }
         }
 
         for (String s : previousEdges) {
             if (!currentEdges.contains(s)) {
-                visualisedGraph.getEdge(s).setAttribute("ui.class", "seen");
+                visualisedGraph.getEdge(s).setAttribute(UI_CLASS, SEEN);
             }
         }
     }
@@ -108,7 +110,7 @@ public class GraphWindow {
      *
      * @return fxViewPanel containing graph
      */
-    public FxViewPanel getViewPanel() {
+    FxViewPanel getViewPanel() {
         FxViewer fxViewer = new FxViewer(visualisedGraph, FxViewer.ThreadingModel.GRAPH_IN_ANOTHER_THREAD);
         return (FxViewPanel) fxViewer.addDefaultView(false);
     }
