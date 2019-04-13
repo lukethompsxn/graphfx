@@ -1,8 +1,7 @@
 import org.graphstream.ui.fx_viewer.FxViewPanel;
-import util.Node;
+import util.GFXGraph;
+import util.GraphWindow;
 
-import java.util.HashSet;
-import java.util.Set;
 import java.util.concurrent.*;
 
 public class GFXManager {
@@ -10,17 +9,17 @@ public class GFXManager {
     private GraphWindow graphWindow;
     private ScheduledFuture task;
 
-    private util.Graph graphData;
+    private GFXGraph graphData;
+    private GFXStateManager stateManager;
     private String stylesPath;
     private boolean hasCompleted;
 
-    private Set<Node> scheduledNodes;
 
-    public GFXManager(util.Graph graphData, String stylesPath) {
+    public GFXManager(GFXGraph graphData, GFXStateManager stateManager, String stylesPath) {
         this.graphData = graphData;
+        this.stateManager = stateManager;
         this.stylesPath = stylesPath;
         this.hasCompleted = false;
-        this.scheduledNodes = new HashSet<>();
     }
 
     public FxViewPanel createGraph() {
@@ -30,14 +29,6 @@ public class GFXManager {
         return graphWindow.getViewPanel();
     }
 
-    public synchronized void updateNodes(Set<Node> scheduledNodes) {
-        this.scheduledNodes = scheduledNodes;
-    }
-
-    private synchronized Set<Node> getScheduledNodes() {
-        return scheduledNodes;
-    }
-
     /**
      * Once called, this method will periodically update the GUI window which
      * visualises the state space search done by the scheduler.
@@ -45,9 +36,9 @@ public class GFXManager {
     private void registerUpdater() {
         Runnable updateSchedule = () -> {
             if (!hasCompleted) {
-                graphWindow.drawHighlighting(getScheduledNodes());
+                graphWindow.drawHighlighting(stateManager.getCurrentNodes());
             } else {
-                graphWindow.drawHighlighting(getScheduledNodes());
+                graphWindow.drawHighlighting(stateManager.getOptimalNodes());
                 task.cancel(true);
             }
         };

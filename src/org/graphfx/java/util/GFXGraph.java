@@ -10,7 +10,7 @@ import java.util.List;
  *
  * @author Zhi Qiao, Abhinav Behal
  */
-public interface Graph {
+public interface GFXGraph {
 
     /**
      * Gets the nodes in the graph.

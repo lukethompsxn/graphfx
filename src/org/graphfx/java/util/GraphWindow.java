@@ -1,9 +1,9 @@
+package util;
+
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.implementations.MultiGraph;
 import org.graphstream.ui.fx_viewer.FxViewPanel;
 import org.graphstream.ui.fx_viewer.FxViewer;
-import util.Edge;
-import util.Node;
 
 import java.util.*;
 
@@ -15,7 +15,7 @@ import java.util.*;
  * @author Luke Thompson
  */
 public class GraphWindow {
-    private util.Graph graphData;
+    private GFXGraph graphData;
     private Graph visualisedGraph;
     private Map<Node, Integer> nodeLevels;
     private Map<Integer, Integer> levels;
@@ -31,13 +31,13 @@ public class GraphWindow {
     private static final String COORDINATE_SYSTEM = "xyz";
     private static final String SEPARATOR = "-";
 
-    public GraphWindow(util.Graph graphData, String stylePath) {
+    public GraphWindow(GFXGraph graphData, String stylePath) {
         this.graphData = graphData;
         nodeLevels = new HashMap<>();
         levels = new HashMap<>();
 
         System.setProperty("org.graphstream.ui.renderer", "org.graphstream.ui.j2dviewer.J2DGraphRenderer");
-        visualisedGraph = new MultiGraph("Graph");
+        visualisedGraph = new MultiGraph("GFXGraph");
         visualisedGraph.setAttribute("ui.stylesheet", "url('" + stylePath + "')");
     }
 
@@ -45,7 +45,7 @@ public class GraphWindow {
      * This method is used to draw the initial tree of nodes and edges which
      * make up the graph.
      */
-    void drawTree() {
+    public void drawTree() {
         int z = 0;
 
         determineLevels();
@@ -110,7 +110,7 @@ public class GraphWindow {
      *
      * @return fxViewPanel containing graph
      */
-    FxViewPanel getViewPanel() {
+    public FxViewPanel getViewPanel() {
         FxViewer fxViewer = new FxViewer(visualisedGraph, FxViewer.ThreadingModel.GRAPH_IN_ANOTHER_THREAD);
         return (FxViewPanel) fxViewer.addDefaultView(false);
     }

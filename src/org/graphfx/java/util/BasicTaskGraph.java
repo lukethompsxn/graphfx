@@ -3,24 +3,24 @@ package util;
 import java.util.*;
 
 /**
- * Represents a Directed Acyclic Graph where nodes are tasks and edges
+ * Represents a Directed Acyclic GFXGraph where nodes are tasks and edges
  * represent dependencies.
  *
  * @author Abhinav Behal, Zhi Qiao
  */
-public class TaskGraph implements Graph {
+public class BasicTaskGraph implements GFXGraph {
     private final Map<String, Node> nodes;
     private final Map<Node, List<Edge>> children;
     private final Map<Node, List<Node>> parents;
     private final Map<Node, Map<Node, Integer>> edgeCosts;
 
     /**
-     * Creates a TaskGraph with a given name, nodes, and associated edges.
+     * Creates a BasicTaskGraph with a given name, nodes, and associated edges.
      *
-     * @param nodes the list of nodes in the TaskGraph
-     * @param edges the list of edges connecting nodes in the TaskGraph
+     * @param nodes the list of nodes in the BasicTaskGraph
+     * @param edges the list of edges connecting nodes in the BasicTaskGraph
      */
-    public TaskGraph(Map<String, Node> nodes, List<Edge> edges) {
+    public BasicTaskGraph(Map<String, Node> nodes, List<Edge> edges) {
         children = new HashMap<>();
         parents = new HashMap<>();
         edgeCosts = new HashMap<>();
@@ -70,7 +70,7 @@ public class TaskGraph implements Graph {
     /**
      * Private helper method used to construct the edges connecting the graph.
      *
-     * @param edges edges connecting nodes in the TaskGraph
+     * @param edges edges connecting nodes in the BasicTaskGraph
      */
     private void build(List<Edge> edges) {
         for (Node n : nodes.values()) {
