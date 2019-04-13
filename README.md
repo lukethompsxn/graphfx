@@ -37,6 +37,10 @@ FxViewPanel uiPanel = manager.createGraph();
 anchorPane.getChildren().add(uiPanel);
 ```
 
+**Example of a Project Using GraphFX*
+
+![](https://raw.githubusercontent.com/lukethompsxn/TaskScheduler/master/res/wiki/GraphView.png)
+
 ### Acknowledgements
 - [Abhinav Behal](https://github.com/AbhinavBehal) and [Zhi Qiao](https://github.com/Z-Qi) for their help creating the `util` package.
 - [GraphStream](http://graphstream-project.org/)
