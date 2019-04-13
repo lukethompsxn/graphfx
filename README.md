@@ -4,6 +4,8 @@ A simple and powerful extension to [GraphStream](http://graphstream-project.org/
 
 This project is designed to make integration of GraphStream into a JavaFX application much more simple, and to produce more visualisally pleasing results. This library handles the multithreading, updating, and creation of the graph, all you need to do is supply the graph data and implement a manager interface. 
 
+In addition to the graph stream implementation, GraphFX automatically determines the levels of your nodes and correctlly allocates them, thus allowing you to have defined levels of dynamic data. GraphFX also automatically distributes the nodes horizontally, ensuring that your graph is always centralised. It also automatically handles highlighting of nodes and edges when your algorithm has them currently scheduled, or has had them previously scheduled.
+
 ### Getting Started
 Download the latest [release](https://github.com/lukethompsxn/graphfx/releases) and add it as a dependency to your project. 
 
