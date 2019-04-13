@@ -37,7 +37,7 @@ FxViewPanel uiPanel = manager.createGraph();
 anchorPane.getChildren().add(uiPanel);
 ```
 
-**Example of a Project Using GraphFX*
+**Example of a Project Using GraphFX**
 
 ![](https://raw.githubusercontent.com/lukethompsxn/TaskScheduler/master/res/wiki/GraphView.png)
 
