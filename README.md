@@ -4,7 +4,7 @@ A simple and powerful extension to [GraphStream](http://graphstream-project.org/
 
 This project is designed to make integration of GraphStream into a JavaFX application much more simple, and to produce more visualisally pleasing results. This library handles the multithreading, updating, and creation of the graph, all you need to do is supply the graph data and implement a manager interface. 
 
-In addition to the graph stream implementation, GraphFX automatically determines the levels of your nodes and correctlly allocates them, thus allowing you to have defined levels of dynamic data. GraphFX also automatically distributes the nodes horizontally, ensuring that your graph is always centralised. It also automatically handles highlighting of nodes and edges when your algorithm has them currently scheduled, or has had them previously scheduled.
+In addition to the graph stream implementation, GraphFX automatically determines the levels of your nodes and correctly allocates them, thus allowing you to have defined levels of dynamic data. GraphFX also automatically distributes the nodes horizontally, ensuring that your graph is always centralised. It also automatically handles highlighting of nodes and edges when your algorithm has them currently scheduled, or has had them previously scheduled.
 
 ### Getting Started
 Download the latest [release](https://github.com/lukethompsxn/graphfx/releases) and add it as a dependency to your project. 
@@ -12,7 +12,7 @@ Download the latest [release](https://github.com/lukethompsxn/graphfx/releases) 
 **Basic Structure**
 - `GFXManager`: This is the class you will interact with, it contains the method `createGraph()` for generating the graph and returning the `FxViewPanel`, the panel which you add to your JavaFX application.
 - `GFXGraph`: This is an interface for the graph data class which is expected to be passed into the `GFXManager` constructor. You can use a pre-implemented concrete class `BasicTaskGraph` where you simply pass a list of `Nodes` and `Edges`.
-- `GFXStateManager`: This is the interface which your algorithm state manager class must implemented. It has two methods, `getCurrentNodes()` and `getOptimalNodes()` which are used to update the graph. 
+- `GFXStateManager`: This is the interface which your algorithm state manager class must implement. It has two methods, `getCurrentNodes()` and `getOptimalNodes()` which are used to update the graph. 
 
 **Using GraphFX**
 
