@@ -1,7 +1,11 @@
-import util.Node;
+package org.graphfx;
 
+import org.graphfx.util.Node;
 import java.util.Set;
 
+/**
+ * @author Luke Thompson
+ */
 public interface GFXStateManager {
 
     /**

@@ -1,4 +1,4 @@
-package util;
+package org.graphfx.util;
 
 import java.util.Objects;
 

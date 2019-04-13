@@ -1,4 +1,4 @@
-package util;
+package org.graphfx.util;
 
 import java.util.*;
 
@@ -6,7 +6,7 @@ import java.util.*;
  * Represents a Directed Acyclic GFXGraph where nodes are tasks and edges
  * represent dependencies.
  *
- * @author Abhinav Behal, Zhi Qiao
+ * @author Abhinav Behal, Zhi Qiao, Luke Thompson
  */
 public class BasicTaskGraph implements GFXGraph {
     private final Map<String, Node> nodes;

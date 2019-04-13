@@ -27,7 +27,7 @@
             <artifactId>gs-core</artifactId>
             <version>1.3</version>
             <scope>system</scope>
-            <systemPath>${project.basedir}/res/gs-core-2.0-alpha.jar</systemPath>
+            <systemPath>${project.basedir}/res/packages/gs-core-2.0-alpha.jar</systemPath>
         </dependency>
 
         <dependency>
@@ -35,7 +35,7 @@
             <artifactId>gs-ui-javafx</artifactId>
             <version>1.3</version>
             <scope>system</scope>
-            <systemPath>${project.basedir}/res/gs-ui-javafx-2.0-alpha.jar</systemPath>
+            <systemPath>${project.basedir}/res/packages/gs-ui-javafx-2.0-alpha.jar</systemPath>
         </dependency>
 
     </dependencies>

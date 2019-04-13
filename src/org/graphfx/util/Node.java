@@ -1,4 +1,4 @@
-package util;
+package org.graphfx.util;
 
 /**
  * Represents a node in a graph, with a given label and cost.

@@ -1,9 +1,14 @@
-import org.graphstream.ui.fx_viewer.FxViewPanel;
-import util.GFXGraph;
-import util.GraphWindow;
+package org.graphfx;
 
+import org.graphstream.ui.fx_viewer.FxViewPanel;
+
+import org.graphfx.util.GFXGraph;
+import org.graphfx.util.GraphWindow;
 import java.util.concurrent.*;
 
+/**
+ * @author Luke Thompson
+ */
 public class GFXManager {
 
     private GraphWindow graphWindow;
@@ -14,7 +19,6 @@ public class GFXManager {
     private String stylesPath;
     private boolean hasCompleted;
 
-
     public GFXManager(GFXGraph graphData, GFXStateManager stateManager, String stylesPath) {
         this.graphData = graphData;
         this.stateManager = stateManager;
@@ -22,11 +26,22 @@ public class GFXManager {
         this.hasCompleted = false;
     }
 
+    /**
+     * This method is used to create the actual graph. It sends off the building
+     * of the graph on another thread, registers the updater service and returns
+     * the actual JavaFX panel.
+     *
+     * @return FxViewPanel for use in the JavaFX application
+     */
     public FxViewPanel createGraph() {
         graphWindow = new GraphWindow(graphData, stylesPath);
         generateGraph();
         registerUpdater();
         return graphWindow.getViewPanel();
+    }
+
+    public void setCompleted() {
+        hasCompleted = true;
     }
 
     /**

@@ -1,4 +1,4 @@
-package util;
+package org.graphfx.util;
 
 import java.util.Collection;
 import java.util.List;
@@ -8,7 +8,7 @@ import java.util.List;
  * Classes implementing this interface should store the complete task schedule
  * and provide the implementation for the defined contracts.
  *
- * @author Zhi Qiao, Abhinav Behal
+ * @author Zhi Qiao, Abhinav Behal, Luke Thompson
  */
 public interface GFXGraph {
 

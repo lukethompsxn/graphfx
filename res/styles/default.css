@@ -1,0 +1,34 @@
+node {
+    fill-color: #839192;
+    size: 20px, 20px;
+    shape: circle;
+    stroke-mode: plain;
+    stroke-color: black;
+}
+
+node.marked {
+    fill-color: #7FE7FF;
+}
+
+node.seen {
+    fill-color: #FE2A97;
+}
+
+edge {
+    fill-color: #839192;
+    size: 2px;
+}
+
+edge.marked {
+    fill-color: #7FE7FF;
+    size: 2px;
+}
+
+edge.seen {
+    fill-color: #FE2A97;
+    size: 2px;
+}
+
+graph {
+    fill-color: #2D2D35;
+}
