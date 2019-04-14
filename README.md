@@ -45,9 +45,9 @@ anchorPane.getChildren().add(uiPanel);
 You can define your own style sheet for styling the nodes, edges and the graph. Unfortunately, GraphStream does NOT support full css, please find the supported styling [here](http://graphstream-project.org/doc/Advanced-Concepts/GraphStream-CSS-Reference#the-css-reference). If you don't define your style sheet, then it will automatically use default styling. Please consult this [template](https://github.com/lukethompsxn/graphfx/blob/master/res/styles/default.css) for how to style your graph.
 
 
-### Example
+### Examples
 
-![](https://raw.githubusercontent.com/lukethompsxn/TaskScheduler/master/res/wiki/GraphView.png)
+![](https://lukethompson.co/resource/images/graphfx.jpg)
 
 ### Acknowledgements
 - [Abhinav Behal](https://github.com/AbhinavBehal) and [Zhi Qiao](https://github.com/Z-Qi) for their help creating the `util` package.
