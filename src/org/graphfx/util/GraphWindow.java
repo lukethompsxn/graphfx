@@ -5,6 +5,7 @@ import org.graphstream.graph.implementations.MultiGraph;
 import org.graphstream.ui.fx_viewer.FxViewPanel;
 import org.graphstream.ui.fx_viewer.FxViewer;
 
+import java.io.File;
 import java.util.*;
 
 /**
@@ -30,14 +31,14 @@ public class GraphWindow {
     private static final String SEEN = "seen";
     private static final String COORDINATE_SYSTEM = "xyz";
     private static final String SEPARATOR = "-";
-    private static final String DEFAULT_STYLE = "res/styles/default.css";
+    private static final String DEFAULT_STYLE = "styles/default.css";
 
     public GraphWindow(GFXGraph graphData, String stylePath) {
         this.graphData = graphData;
         nodeLevels = new HashMap<>();
         levels = new HashMap<>();
 
-        if (stylePath == null || stylePath.isEmpty()) {
+        if (stylePath == null || stylePath.isEmpty() || !(new File(stylePath)).exists()) {
             stylePath = DEFAULT_STYLE;
         }
 

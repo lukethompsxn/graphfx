@@ -1,10 +1,14 @@
 package org.graphfx;
 
-import org.graphstream.ui.fx_viewer.FxViewPanel;
-
+import javafx.application.Platform;
 import org.graphfx.util.GFXGraph;
 import org.graphfx.util.GraphWindow;
-import java.util.concurrent.*;
+import org.graphstream.ui.fx_viewer.FxViewPanel;
+
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author Luke Thompson
@@ -17,13 +21,11 @@ public class GFXManager {
     private GFXGraph graphData;
     private GFXStateManager stateManager;
     private String stylesPath;
-    private boolean hasCompleted;
 
     public GFXManager(GFXGraph graphData, GFXStateManager stateManager, String stylesPath) {
         this.graphData = graphData;
         this.stateManager = stateManager;
         this.stylesPath = stylesPath;
-        this.hasCompleted = false;
     }
 
     /**
@@ -40,20 +42,16 @@ public class GFXManager {
         return graphWindow.getViewPanel();
     }
 
-    public void setCompleted() {
-        hasCompleted = true;
-    }
-
     /**
      * Once called, this method will periodically update the GUI window which
      * visualises the state space search done by the scheduler.
      */
     private void registerUpdater() {
         Runnable updateSchedule = () -> {
-            if (!hasCompleted) {
-                graphWindow.drawHighlighting(stateManager.getCurrentNodes());
+            if (!stateManager.hasCompleted()) {
+                Platform.runLater(() -> graphWindow.drawHighlighting(stateManager.getCurrentNodes()));
             } else {
-                graphWindow.drawHighlighting(stateManager.getOptimalNodes());
+                Platform.runLater(() -> graphWindow.drawHighlighting(stateManager.getOptimalNodes()));
                 task.cancel(true);
             }
         };
@@ -66,8 +64,6 @@ public class GFXManager {
      * Builds the tree graph on a separate thread
      */
     private void generateGraph() {
-        ExecutorService executorService = Executors.newSingleThreadExecutor();
-        executorService.submit(graphWindow::drawTree);
-        executorService.shutdown();
+        Platform.runLater(graphWindow::drawTree);
     }
 }

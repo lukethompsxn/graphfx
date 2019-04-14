@@ -1,6 +1,7 @@
 package org.graphfx;
 
 import org.graphfx.util.Node;
+
 import java.util.Set;
 
 /**
@@ -24,4 +25,13 @@ public interface GFXStateManager {
      * @return set of optimally scheduled nodes
      */
     Set<Node> getOptimalNodes();
+
+    /**
+     * This method is designed to determine when the algorithm has completed its
+     * scheduling. This this be implemented by your state manager to return
+     * true when scheduling is complete, and false otherwise.
+     *
+     * @return true when scheduling complete; false otherwise
+     */
+    boolean hasCompleted();
 }
