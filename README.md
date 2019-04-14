@@ -54,4 +54,4 @@ You can define your own style sheet for styling the nodes, edges and the graph. 
 - [GraphStream](http://graphstream-project.org/)
 
 ### License 
-MIT License. Please refer to [LICENSE]()
+MIT License. Please refer to [LICENSE](https://github.com/lukethompsxn/graphfx/blob/master/LICENSE)
