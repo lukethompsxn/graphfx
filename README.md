@@ -20,6 +20,7 @@ To create a graph, simply create a new `GFXManager`, passing in your `GFXGraph` 
 
 ```
 // Creating your graphData object
+
 Map<String, Node> nodes = new HashMap<>();
 Node nodeA = new Node("A", 2);
 Node nodeB = new Node("B", 1);
@@ -34,15 +35,23 @@ GFXGraph graphData = new BasicTaskGraph(nodes, edges);
 ```
 ```
 // Creating the visual graph 
+
 GFXManager manager = new GFXManager(graphData, stateManager, stylesPath);
 FxViewPanel uiPanel = manager.createGraph();
 anchorPane.getChildren().add(uiPanel);
 ```
+**Styling**
 
-**Example of a Project Using GraphFX**
+You can define your own style sheet for styling the nodes, edges and the graph. Unfortunately, GraphStream does NOT support full css, please find the supported styling [here](http://graphstream-project.org/doc/Advanced-Concepts/GraphStream-CSS-Reference#the-css-reference). If you don't define your style sheet, then it will automatically use default styling. Please consult this [template](https://github.com/lukethompsxn/graphfx/blob/master/res/styles/default.css) for how to style your graph.
+
+
+### Example
 
 ![](https://raw.githubusercontent.com/lukethompsxn/TaskScheduler/master/res/wiki/GraphView.png)
 
 ### Acknowledgements
 - [Abhinav Behal](https://github.com/AbhinavBehal) and [Zhi Qiao](https://github.com/Z-Qi) for their help creating the `util` package.
 - [GraphStream](http://graphstream-project.org/)
+
+### License 
+MIT License. Please refer to [LICENSE]()
