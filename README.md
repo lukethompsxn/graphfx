@@ -18,7 +18,7 @@ Download the latest [release](https://github.com/lukethompsxn/graphfx/releases) 
 
 To create a graph, simply create a new `GFXManager`, passing in your `GFXGraph` data, `GFXStateManager` concrete class and the path to the stylesheet. Then call `createGraph()` which will return the panel you need to include in your project. Thats all you need to do, GraphFX will handle the rest from there! 
 
-```
+```java
 // Creating your graphData object
 
 Map<String, Node> nodes = new HashMap<>();
@@ -33,7 +33,7 @@ edges.add(edge);
 
 GFXGraph graphData = new BasicTaskGraph(nodes, edges);
 ```
-```
+```java
 // Creating the visual graph 
 
 GFXManager manager = new GFXManager(graphData, stateManager, stylesPath);
